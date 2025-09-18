@@ -28,8 +28,23 @@ def registrar_usuario (dados)
      print("___Cadastros de Novo Usuário___")
      username = input("Digite o nome de usuário desejado: ")
      if username in dados:
-         print("ERRO:Nome de Usuário ja existe")
+         print("ERRO: Nome de Usuário ja existe")
          return
      if not username:
-         print("ERRO: usuário não pode ser nulo")
-         return    
+         print("ERRO: Usuário não pode ser nulo")
+         return
+     
+     senha = getpass.getpass("Digite a senha:")
+     senha_confim= getpass.getpass ("Confirme a senha: ") 
+     
+     if not senha:
+         print("ERRO: Senha nula")
+         return
+     if senha != senha_confim:
+         print("ERRO: As senhas não coincidem")
+         return
+     
+     dados[username] = {
+         "senha": hash_senha(senha),
+         "Tarefas": []}
+         
