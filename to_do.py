@@ -23,4 +23,13 @@ def save_data (dados):
 def hash_senha (senha) :
     return hashlib.sha256(senha.encode()) . hexdigest()
 
-def registrar_usuario (dados)       
+def registrar_usuario (dados)
+
+     print("___Cadastros de Novo Usuário___")
+     username = input("Digite o nome de usuário desejado: ")
+     if username in dados:
+         print("ERRO:Nome de Usuário ja existe")
+         return
+     if not username:
+         print("ERRO: usuário não pode ser nulo")
+         return    
