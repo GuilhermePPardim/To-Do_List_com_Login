@@ -58,3 +58,7 @@ def fazer_login(dados):
     senha = getpass.getpass("Senha: ")
     
     if username not in dados:
+        print("ERRO: Usuário não encotrado")
+        return None
+    
+    if dados[username]
