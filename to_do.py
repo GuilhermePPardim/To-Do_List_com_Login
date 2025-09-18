@@ -46,5 +46,15 @@ def registrar_usuario (dados)
      
      dados[username] = {
          "senha": hash_senha(senha),
-         "Tarefas": []}
-         
+         "Tarefas": []
+}
+    salvar_dados(dados)
+    print(f"Usuário '{username}' cadastro com sucesso!")    
+     
+def fazer_login(dados):
+    
+    print("___Login___")
+    username = input("Usuário: ")
+    senha = getpass.getpass("Senha: ")
+    
+    if username not in dados:
