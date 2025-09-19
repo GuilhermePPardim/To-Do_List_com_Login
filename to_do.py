@@ -61,4 +61,60 @@ def fazer_login(dados):
         print("ERRO: Usuário não encotrado")
         return None
     
-    if dados[username] 
+    if dados[username]["senha"] == hash_senha(senha) :
+        print(f"login bem-sucedido! Bem vindo(a), {username}")
+        return username
+    else
+        print("ERRO: Senha incorreta.")
+        return None
+
+def menu_tarefas (username, dados):
+    
+    while True:
+        print(f"***Menu de terefas de {username}***")
+        print("1. Adicionar Tarefas")
+        print("2. Listar Tarefa")
+        print("3 Marcar Tarefa como Concluida")
+        print("4. Remover Tarefa")
+        print("5. SAIR")
+        
+        escolha = input ("Escolha uma opção")
+        
+        if escolha == '1' :
+            adicionar_tarefa(username, dados)
+        elif escolha == '2' :
+            listar_tarefa(username, dados)
+        elif escolha == '3' :
+            marcar_tarefa_concluida(username, dados)
+        elif escolha == '4'
+            remover_tarefa(username, dados)      
+        elif escolha == '5'
+            print("SAINDO")
+            break
+        else:
+            print("INVÁLIDO.")
+                   
+        
+        salvar_dados(dados)
+                   
+def adicionar_tarefa(username, dados):
+    
+    descricao = input ("Digite a descrição da nova tarefa: ")
+    if descricao:
+        tarefa = {"descricao": descricao, "concluida": False}
+        dados[username]["tarefas"].append(tarefa)
+        print("Tarefa adicionada com sucesso! ")
+    else:
+        print("A descrição da tarefa não pode ser NULA. ")
+       
+def listar_tarefas(username, dados):
+    
+    print("***Sua Lista de Tarefas*** ")
+    tarefas = dados[username]["tarefas"]
+    if not tarefas:
+        print("Sem tarefas.")
+        return
+    
+    for i, tarefa in enumerate(tarefas):
+        status = "✓" if tarefa["concluida"] else " "
+        print(f"{i + 1}")
