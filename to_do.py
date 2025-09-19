@@ -61,4 +61,4 @@ def fazer_login(dados):
         print("ERRO: Usuário não encotrado")
         return None
     
-    if dados[username]
+    if dados[username] 
