@@ -1,0 +1,15 @@
+{
+    "Guilherme": {
+        "senha": "a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3",
+        "tarefas": []
+    },
+    "GUilherme": {
+        "senha": "a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3",
+        "tarefas": [
+            {
+                "descricao": "& C:/Users/igorg/AppData/Local/Programs/Python/Python313/python.exe \"c:/Users/igorg/Documents/meus projetos/To-Do_List_com_Login/to_do.py\"",
+                "concluida": false
+            }
+        ]
+    }
+}
