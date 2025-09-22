@@ -12,42 +12,42 @@ def carregar_dados():
         with open(arquivos_dados, 'r') as f:
             return json.load(f)
     
-    except (json.jsondecodeerror, FileNotFoundError):
+    except (json.JSONDecodeError, FileNotFoundError):
         return{}
 
 def salvar_dados (dados):
     
     with open (arquivos_dados, 'w') as f:
-        json.dump(dados, f indent = 4)
+        json.dump(dados, f, indent = 4)
         
 def hash_senha (senha) :
     return hashlib.sha256(senha.encode()) . hexdigest()
 
-def registrar_usuario (dados)
+def registrar_usuario (dados):
 
-     print("___Cadastros de Novo Usuário___")
-     username = input("Digite o nome de usuário desejado: ")
-     if username in dados:
+    print("___Cadastros de Novo Usuário___")
+    username = input("Digite o nome de usuário desejado: ")
+    if username in dados:
          print("ERRO: Nome de Usuário ja existe")
          return
-     if not username:
+    if not username:
          print("ERRO: Usuário não pode ser nulo")
          return
      
-     senha = getpass.getpass("Digite a senha:")
-     senha_confim= getpass.getpass ("Confirme a senha: ") 
+    senha = getpass.getpass("Digite a senha:")
+    senha_confim= getpass.getpass ("Confirme a senha: ") 
      
-     if not senha:
+    if not senha:
          print("ERRO: Senha nula")
          return
-     if senha != senha_confim:
+    if senha != senha_confim:
          print("ERRO: As senhas não coincidem")
          return
      
-     dados[username] = {
+    dados[username] = {
          "senha": hash_senha(senha),
-         "Tarefas": []
-}
+         "tarefas": []
+    }
     salvar_dados(dados)
     print(f"Usuário '{username}' cadastro com sucesso!")    
      
@@ -62,23 +62,23 @@ def fazer_login(dados):
         return None
     
     if dados[username]["senha"] == hash_senha(senha) :
-        print(f"login bem-sucedido! Bem vindo(a), {username}")
+        print(f"\nlogin bem-sucedido! Bem vindo(a), {username}")
         return username
-    else
+    else:
         print("ERRO: Senha incorreta.")
         return None
 
 def menu_tarefas (username, dados):
     
     while True:
-        print(f"***Menu de terefas de {username}***")
-        print("1. Adicionar Tarefas")
+        print(f"\n***Menu de terefas de {username}***")
+        print("\n1. Adicionar Tarefas")
         print("2. Listar Tarefa")
-        print("3 Marcar Tarefa como Concluida")
+        print("3. Marcar Tarefa como Concluida")
         print("4. Remover Tarefa")
         print("5. SAIR")
         
-        escolha = input ("Escolha uma opção")
+        escolha = input ("Escolha uma opção: ")
         
         if escolha == '1' :
             adicionar_tarefa(username, dados)
@@ -86,9 +86,9 @@ def menu_tarefas (username, dados):
             listar_tarefa(username, dados)
         elif escolha == '3' :
             marcar_tarefa_concluida(username, dados)
-        elif escolha == '4'
+        elif escolha == '4' :
             remover_tarefa(username, dados)      
-        elif escolha == '5'
+        elif escolha == '5' :
             print("SAINDO")
             break
         else:
@@ -117,12 +117,12 @@ def listar_tarefas(username, dados):
     
     for i, tarefa in enumerate(tarefas):
         status = "✓" if tarefa["concluida"] else " "
-        print(f"{i + 1}. [{status}] {tarefa[descricao]}")
+        print(f"{i + 1}. [{status}] {tarefa['descricao']}")
         
 def marcar_tarefa_concluida(username, dados):
     
     listar_tarefas(username, dados)
-    tarefa = dados [username]["tarefas"]
+    tarefas = dados [username]["tarefas"]
     if not tarefas:
         return
 
@@ -153,15 +153,15 @@ def remover_tarefa(username, dados):
         print("Entrada inválida. por favor, digite um número. ")
         
 def main():
-    dados = carregar_dados
+    dados = carregar_dados()
     
     while True:
-        print("---BEM-VINDO À APLICAÇÂO---")
-        print("1. LOGIN")
-        print("2, Registrar")
+        print("\n---BEM-VINDO À APLICAÇÂO---")
+        print("\n1. LOGIN")
+        print("2. Registrar")
         print("3. Sair")
         
-        escolha_inicial = input("Escolha uma opção: ")
+        escolha_inicial = input("\nEscolha uma opção: ")
         
         if escolha_inicial == '1':
             usuario_logado = fazer_login(dados)
@@ -170,10 +170,10 @@ def main():
         elif escolha_inicial == '2':
             registrar_usuario(dados)
         elif escolha_inicial == '3':
-            print("Obrigado por usar a aplicação. Até logo!")
+            print("\nObrigado por usar a aplicação. Até logo!")
             break
         else:
-            print("Opção inválida. Tente novamente.")
+            print("\nOpção inválida. Tente novamente.")
 
 if __name__ == "__main__":
     main()
