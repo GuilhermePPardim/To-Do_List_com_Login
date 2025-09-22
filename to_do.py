@@ -15,7 +15,7 @@ def carregar_dados():
     except (json.jsondecodeerror, FileNotFoundError):
         return{}
 
-def save_data (dados):
+def salvar_dados (dados):
     
     with open (arquivos_dados, 'w') as f:
         json.dump(dados, f indent = 4)
@@ -117,4 +117,12 @@ def listar_tarefas(username, dados):
     
     for i, tarefa in enumerate(tarefas):
         status = "✓" if tarefa["concluida"] else " "
-        print(f"{i + 1}")
+        print(f"{i + 1}. [{status}] {tarefa[descricao]}")
+        
+def marcar_tarefa_concluida(username, dados):
+    
+    listar_tarefas(username, dados)
+    tarefa = dados [username]["tarefas"]
+    if not tarefas:
+        return
+
