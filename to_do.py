@@ -126,3 +126,9 @@ def marcar_tarefa_concluida(username, dados):
     if not tarefas:
         return
 
+    try:
+        num_tarefa = int(input("Digite o número da tarefa para marcar como concluida: "))
+        if 1 <= num_tarefa <= len(tarefas):
+            tarefas[num_tarefa - 1]["concluida"] = True
+            print("Tarefa marcado como conluída! ")
+        else: print ("Número de tarefa inválido")
