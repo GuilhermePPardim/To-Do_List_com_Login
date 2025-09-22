@@ -131,4 +131,49 @@ def marcar_tarefa_concluida(username, dados):
         if 1 <= num_tarefa <= len(tarefas):
             tarefas[num_tarefa - 1]["concluida"] = True
             print("Tarefa marcado como conluída! ")
-        else: print ("Número de tarefa inválido")
+        else: print ("Número de tarefa inválido.")
+    except ValueError:
+        print("ENtrada inválida. Por favor , digite um número.")
+
+def remover_tarefa(username, dados): 
+    
+    listar_tarefas(username, dados)
+    tarefas = dados[username]["tarefas"]
+    if not tarefas:
+        return
+    
+    try:
+        num_tarefa = int(input("Digite o número da tarefa para remover"))
+        if 1 <= num_tarefa <= len(tarefas):
+            tarefa_removida = tarefas.pop(num_tarefa - 1)
+            print(f"Tarefa '{tarefa_removida['descricao']}'removida com sucesso")
+        else: 
+            print("Número de tarefa inválido. ")
+    except ValueError:
+        print("Entrada inválida. por favor, digite um número. ")
+        
+def main():
+    dados = carregar_dados
+    
+    while True:
+        print("---BEM-VINDO À APLICAÇÂO---")
+        print("1. LOGIN")
+        print("2, Registrar")
+        print("3. Sair")
+        
+        escolha_inicial = input("Escolha uma opção: ")
+        
+        if escolha_inicial == '1':
+            usuario_logado = fazer_login(dados)
+            if usuario_logado:
+                menu_tarefas(usuario_logado, dados)
+        elif escolha_inicial == '2':
+            registrar_usuario(dados)
+        elif escolha_inicial == '3':
+            print("Obrigado por usar a aplicação. Até logo!")
+            break
+        else:
+            print("Opção inválida. Tente novamente.")
+
+if __name__ == "__main__":
+    main()
