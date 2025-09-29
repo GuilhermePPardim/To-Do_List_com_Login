@@ -107,7 +107,7 @@ def adicionar_tarefa(username, dados):
     else:
         print("A descrição da tarefa não pode ser NULA. ")
        
-def listar_tarefas(username, dados):
+def listar_tarefa(username, dados):
     
     print("***Sua Lista de Tarefas*** ")
     tarefas = dados[username]["tarefas"]
@@ -121,7 +121,7 @@ def listar_tarefas(username, dados):
         
 def marcar_tarefa_concluida(username, dados):
     
-    listar_tarefas(username, dados)
+    listar_tarefa(username, dados)
     tarefas = dados [username]["tarefas"]
     if not tarefas:
         return
@@ -137,7 +137,7 @@ def marcar_tarefa_concluida(username, dados):
 
 def remover_tarefa(username, dados): 
     
-    listar_tarefas(username, dados)
+    listar_tarefa(username, dados)
     tarefas = dados[username]["tarefas"]
     if not tarefas:
         return
